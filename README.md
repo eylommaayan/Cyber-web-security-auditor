@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛡️ Web Security Posture & Header Auditor
 
-## Getting Started
 
-First, run the development server:
+<img width="1133" height="471" alt="image" src="https://github.com/user-attachments/assets/cf1818ee-6ffb-4874-9a05-16aca94a2d14" />
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+<img width="1228" height="833" alt="image" src="https://github.com/user-attachments/assets/dfb6ae07-a936-48d7-80e8-5de72e08f844" />
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<img width="1245" height="863" alt="image" src="https://github.com/user-attachments/assets/4c331daa-5ba8-4c5e-a38c-d2bd23eb5221" />
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+> כלי לניתוח פסיבי של כותרות אבטחה (Security Headers), זיהוי פערי תצורה והערכת חשיפה למתקפות רשת נפוצות – בנוי ב-**Next.js (App Router)**, **TypeScript**, ו-**Tailwind CSS**.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🌟 סקירה כללית (Overview)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+האפליקציה מאפשרת להזין כתובת URL של כל אתר אינטרנט ומבצעת בדיקה פסיבית (Passive Inspection) בלבד של כותרות ה-HTTP שהשרת מחזיר. 
 
-## Deploy on Vercel
+על סמך ניתוח הכותרות, המערכת מחשבת ציון חוסן משוקלל (A+ עד F) ומציגה רשימה של מתקפות רשת שהאתר עלול להיות חשוף אליהן בהיעדר הגנות אלו, לצד המלצות קונקרטיות לתיקון והקשחת השרת.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🔍 מה המערכת בודקת?
+
+המערכת בודקת 6 כותרות אבטחה קריטיות וממפה אותן למתקפות רלוונטיות:
+
+1. **Content-Security-Policy (CSP):**
+   * *חשיפה אפשרית בהיעדר הגנה:* Cross-Site Scripting (XSS), הזרקת סקריפטים וגניבת מידע.
+2. **Strict-Transport-Security (HSTS):**
+   * *חשיפה אפשרית בהיעדר הגנה:* מתקפות Man-in-the-Middle (MitM), שנמוך פרוטוקול (SSL Stripping).
+3. **X-Frame-Options:**
+   * *חשיפה אפשרית בהיעדר הגנה:* Clickjacking ו-UI Redressing בתוך `<iframe>` מתחזה.
+4. **X-Content-Type-Options:**
+   * *חשיפה אפשרית בהיעדר הגנה:* מתקפות MIME-Confusion והרצת קבצים סטטיים כקוד JavaScript.
+5. **Referrer-Policy:**
+   * *חשיפה אפשרית בהיעדר הגנה:* דליפת מידע רגיש וטוקנים בנתיב ה-URL לשירותי צד שלישי.
+6. **Permissions-Policy:**
+   * *חשיפה אפשרית בהיעדר הגנה:* גישה לא מורשית לחומרה רגישה (מצלמה, מיקרופון, מיקום גאוגרפי) דרך סקריפטים חיצוניים.
+
+---
+
+## 🛠️ טכנולוגיות (Tech Stack)
+
+* **Framework:** Next.js (App Router)
+* **Language:** TypeScript
+* **Styling:** Tailwind CSS
+* **Icons:** Lucide React
+* **Execution:** Server Actions (עקיפת מגבלות CORS וביצוע שאילתות מהירות ומאובטחות ישירות מהשרת)
+
+---
+
+## 🚀 התקנה והרצה מקומית (Getting Started)
+
+1. **שכפול המאגר:**
+   ```bash
+   git clone [https://github.com/YOUR_USERNAME/web-security-auditor.git](https://github.com/YOUR_USERNAME/web-security-auditor.git)
+   cd web-security-auditor
